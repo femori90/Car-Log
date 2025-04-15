@@ -10,17 +10,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Carlog</a>
+        <a class="navbar-brand active" th:href="@{/home}">Carlog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <!-- Menu da esquerda -->
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" th:href="@{/lista-usuarios}">Usuários</a>
+              <a class="nav-link" th:href="@{/lista-usuarios}">Usuários</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Veículos</a>
+              <a class="nav-link" th:href="@{/lista-veiculos}">Veículos</a>
             </li>
           </ul>
         </div>

@@ -19,7 +19,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="#">Carlog</a>
+          <a class="navbar-brand" th:href="@{/home}">Carlog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
   
           <div class="collapse navbar-collapse" id="navbarNav">
@@ -29,7 +29,7 @@
                 <a class="nav-link active" th:href="@{/lista-usuarios}">Usuários</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Veículos</a>
+                <a class="nav-link" th:href="@{/lista-veiculos}">Veículos</a>
               </li>
             </ul>
           </div>
@@ -56,7 +56,7 @@
 
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="cpf" th:field="*{cpf}">
+                <input type="text" class="form-control" id="cpf" th:field="*{cpf}" oninput="mascara(this)"> 
                 <ul>
                     <li th:each="error : ${#fields.errors('cpf')}" th:text="${error}" class="text-danger"></li>
                 </ul>
@@ -93,7 +93,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a th:if="${usuario.id}" href="" class="btn btn-sm btn-secondary" onClick="alert('Funcionalidade em desenvolvimento!');">Alterar Senha</a>
+            <a th:if="${usuario.id}" th:href="@{/update-password/{id}(id=${usuario.id})}" class="btn btn-sm btn-secondary" >Alterar Senha</a>
         </form>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
@@ -112,6 +112,21 @@
                 iconeOlho.classList.toggle('bi-eye-slash');
               });
         }
+
+        function mascara(i){
+   
+          var v = i.value;
+          
+          if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+             i.value = v.substring(0, v.length-1);
+             return;
+          }
+          
+          i.setAttribute("maxlength", "14");
+          if (v.length == 3 || v.length == 7) i.value += ".";
+          if (v.length == 11) i.value += "-";
+       
+       }
       </script>
   </body>
 

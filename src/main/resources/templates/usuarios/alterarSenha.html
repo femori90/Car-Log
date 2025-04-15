@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CarLog - Alterar Senha</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    <!-- Ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Carlog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Menu da esquerda -->
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/lista-usuarios}">Usuários</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/lista-veiculos}">Veículos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+        <h1>Alterar Senha</h1>
+
+      
+        <p th:if="${#lists.isEmpty(usuarios)}">Entre com a nova senha para o usuário <strong th:text="${usuario.nome}"></strong>.</p>
+
+        <form method="POST" th:object="${usuario}"> 
+          <div class="mb-3">
+            <label for="novaSenha" class="form-label">Senha</label>
+
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" id="novaSenha" placeholder="Digite a nova senha" required onblur="validar()">
+                <button class="btn btn-outline-secondary" type="button" id="toggleNovaSenha">
+                    <i class="bi bi-eye" id="iconeOlhoNovaSenha"></i>
+                </button>
+            </div>
+
+          </div>
+
+          <div class="mb-3">
+            <label for="senha" class="form-label">Confirme a senha</label>
+
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" id="senha" placeholder="Confime a nova senha" th:field="*{senha}" required onblur="validar()">
+                <button class="btn btn-outline-secondary" type="button" id="toggleSenha">
+                    <i class="bi bi-eye" id="iconeOlho"></i>
+                </button>
+            </div>
+
+            <ul>
+              <li class="text-danger collapse" id="mensagemErro">As senhas não conferem. Verifique se as senhas digitadas estão iguais!</li>
+          </ul>
+          </div>
+        
+          <button type="submit" class="btn btn-primary" id="salvar">Salvar</button>
+          <a th:href="@{/lista-usuarios}" class="btn btn-danger">Cancelar</a>
+        </form> 
+        
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
+    <script >
+      const novaSenhaInput = document.getElementById('novaSenha');
+      const toggleBtnNovaSenha = document.getElementById('toggleNovaSenha');
+      const iconeOlhoNovaSenha = document.getElementById('iconeOlhoNovaSenha');
+
+      const senhaInput = document.getElementById('senha');
+      const toggleBtn = document.getElementById('toggleSenha');
+      const iconeOlho = document.getElementById('iconeOlho');
+    
+      if(toggleBtn != null) {
+          toggleBtn.addEventListener('click', () => {
+              const tipo = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+              senhaInput.setAttribute('type', tipo);
+              iconeOlho.classList.toggle('bi-eye');
+              iconeOlho.classList.toggle('bi-eye-slash');
+            });
+      }
+
+      if(toggleBtnNovaSenha != null) {
+        toggleBtnNovaSenha.addEventListener('click', () => {
+            const tipo = novaSenhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            novaSenhaInput.setAttribute('type', tipo);
+            iconeOlhoNovaSenha.classList.toggle('bi-eye');
+            iconeOlhoNovaSenha.classList.toggle('bi-eye-slash');
+          });
+    }
+
+    function validar() {
+      var novaSenha = document.getElementById('novaSenha').value;
+      var senha = document.getElementById('senha').value;
+
+      if (novaSenha != "" && senha != "") {
+        if(senha != novaSenha) {
+          document.getElementById("salvar").disabled = true;
+          document.getElementById("mensagemErro").setAttribute("class", "text-danger collapse show");
+          return;
+        }
+      }
+      document.getElementById("salvar").disabled = false;
+      document.getElementById("mensagemErro").setAttribute("class", "collapse");
+    }
+    </script>
+  </body>
+  <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <div class="container">
+      <small>Carlog © 2025. Todos os direitos reservados.</small>
+    </div>
+  </footer>
+</html>

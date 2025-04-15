@@ -3,6 +3,7 @@ package br.com.mackenzie.carlog.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -21,31 +23,31 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Nome não pode estar em branco.")
     @Size(min = 5, max = 150)
     @Column(length = 150, nullable = false)
     private String nome;
 
     @NotBlank
-    @Size(max = 11)
-    @Column(length = 11, nullable = false, unique = true)
+    @CPF(message = "CPF inválido.")
+    @Column(length = 14, nullable = false, unique = true)
     private String cpf;
 
-    @NotBlank
-    @Column(length = 11, nullable = false, unique = true)
+    @NotBlank(message = "Telefone não pode estar em branco.")
+    @Column(length = 11, nullable = false)
     private String telefone;
 
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate dataNascimento;
 
     @NotBlank
+    @Email(message = "E-mail inválido.")
     @Column(length = 100, nullable = false)
     private String email;
 
     @Column(length = 80, nullable = false)
     private String senha;
 
-    // @FutureOrPresent
     @Column(nullable = false)
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDateTime dataCriacao;

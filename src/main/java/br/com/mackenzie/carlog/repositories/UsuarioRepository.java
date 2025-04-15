@@ -13,8 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     public Usuario findByCpf(String cpf);
 
-    // public Usuario validaEmailCpf(String cpf, String email);
-
     @Query("select u from Usuario u where u.email = :user and u.senha = :senha")
     public Usuario buscarLogin(String user, String senha);
 }

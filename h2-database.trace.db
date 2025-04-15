@@ -1,3 +1,6 @@
 2025-04-06 22:00:21.645333-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "CPF CHARACTER VARYING(11)": "'447.745.048-66' (14)"; SQL statement:
 insert into usuario (cpf,data_criacao,email,nome,senha,id) values (?,?,?,?,?,default) [22001-232]
+2025-04-15 12:38:40.963327-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CPF CHARACTER VARYING(11)": "'219.020.408-99' (14)"; SQL statement:
+insert into usuario (cpf,data_criacao,data_nascimento,email,nome,senha,telefone,id) values (?,?,?,?,?,?,?,default) [22001-232]

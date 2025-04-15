@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        CarLog - 
+        <th:block th:unless="${veiculo.id}">Novo</th:block>
+        <th:block th:if="${veiculo.id}">Editar</th:block>
+        Veículo
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    <!-- Ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" th:href="@{/home}">Carlog</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+  
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Menu da esquerda -->
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/lista-usuarios}">Usuários</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" th:href="@{/lista-veiculos}">Veículos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <main class="container">
+        <h1>
+            <span th:unless="${veiculo.id}">Novo</span> 
+            <span th:if="${veiculo.id}">Editar</span> 
+            Veículo
+        </h1>
+        
+        <form method="POST" th:object="${veiculo}">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" placeholder="digite a marca do veículo" id="marca" th:field="*{marca}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('marca')}" th:text="${error}" class="text-danger"></li>
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control" placeholder="digite o modelo do veículo" id="modelo" th:field="*{modelo}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('modelo')}" th:text="${error}" class="text-danger"></li>
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <label for="anoFabricacao" class="form-label">Ano de Fabricação</label>
+                <input type="text" class="form-control" placeholder="apenas números ou será inválido" minlength="4" maxlength="4" id="anoFabricacao" pattern="[0-9]+$" th:field="*{anoFabricacao}">
+            </div>
+
+            <div class="mb-3">
+                <label for="placa" class="form-label">Placa</label>
+                <input type="text" class="form-control" maxlength="7" placeholder="digite a placa do veículo" id="placa" th:field="*{placa}">
+            </div>
+
+            <div class="mb-3">
+                <label for="cor" class="form-label">Cor</label>
+                <input type="text" class="form-control" placeholder="digite a cor do veículo" id="cor" th:field="*{cor}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
+
+  </body>
+
+  <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <div class="container">
+      <small>Carlog © 2025. Todos os direitos reservados.</small>
+    </div>
+  </footer>
+</html>

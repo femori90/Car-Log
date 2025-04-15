@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import br.com.mackenzie.carlog.validation.CpfValidation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,12 +30,13 @@ public class Usuario {
     private String nome;
 
     @NotBlank
-    @CPF(message = "CPF inválido.")
-    @Column(length = 14, nullable = false, unique = true)
+    //@CPF(message = "CPF inválido.")
+    @CpfValidation
+    @Column(length = 14, nullable = false)
     private String cpf;
 
     @NotBlank(message = "Telefone não pode estar em branco.")
-    @Column(length = 11, nullable = false)
+    @Column(length = 15, nullable = false)
     private String telefone;
 
     @DateTimeFormat(iso = ISO.DATE)

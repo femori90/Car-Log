@@ -23,7 +23,6 @@ public class LoginController {
         this.usuarioService = usuarioService;
     }
 
-    
     @GetMapping("/login")
     public ModelAndView login() {
         return new ModelAndView(
@@ -67,5 +66,12 @@ public class LoginController {
         }
 
         return mv;
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        
+        session.invalidate();
+        return login();
     }
 }

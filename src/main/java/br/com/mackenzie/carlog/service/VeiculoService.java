@@ -56,6 +56,10 @@ public class VeiculoService {
         return veiculoRepository.save(veiculo);
     }
 
+    public Veiculo findByPlaca(String placa) {
+        return veiculoRepository.findByPlaca(placa.toUpperCase());
+    }
+
     private void placaExiste(Veiculo veiculo) {
         var veiculoPlaca = veiculoRepository.findByPlaca(veiculo.getPlaca().toUpperCase());
 

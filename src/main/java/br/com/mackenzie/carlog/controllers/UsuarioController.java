@@ -1,5 +1,6 @@
 package br.com.mackenzie.carlog.controllers;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,7 +41,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/create")
-    public String create(@Valid Usuario usuario, BindingResult result) {
+    public String create(@Valid Usuario usuario, BindingResult result) throws NoSuchAlgorithmException {
 
         if (result.hasErrors()) {
             return "usuarios/cadastro";
@@ -65,7 +65,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable Integer id, @Valid Usuario usuario, BindingResult result) {
+    public String update(@PathVariable Integer id, Usuario usuario, BindingResult result) {
 
         if (result.hasErrors()) {
             return "usuarios/cadastro";

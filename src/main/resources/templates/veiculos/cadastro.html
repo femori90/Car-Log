@@ -32,6 +32,13 @@
                 <a class="nav-link active" th:href="@{/lista-veiculos}">Veículos</a>
               </li>
             </ul>
+
+          <!-- Menu da direita -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">Sair</a>
+            </li>
+          </ul>
           </div>
         </div>
       </nav>
@@ -48,7 +55,7 @@
 
             <div class="mb-3">
                 <label for="marca" class="form-label">Marca</label>
-                <input type="text" class="form-control" placeholder="digite a marca do veículo" id="marca" th:field="*{marca}">
+                <input type="text" class="form-control" placeholder="digite a marca do veículo" id="marca" th:field="*{marca}" required>
                 <ul>
                     <li th:each="error : ${#fields.errors('marca')}" th:text="${error}" class="text-danger"></li>
                 </ul>
@@ -56,7 +63,7 @@
 
             <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo</label>
-                <input type="text" class="form-control" placeholder="digite o modelo do veículo" id="modelo" th:field="*{modelo}">
+                <input type="text" class="form-control" placeholder="digite o modelo do veículo" id="modelo" th:field="*{modelo}" required>
                 <ul>
                     <li th:each="error : ${#fields.errors('modelo')}" th:text="${error}" class="text-danger"></li>
                 </ul>
@@ -64,17 +71,26 @@
 
             <div class="mb-3">
                 <label for="anoFabricacao" class="form-label">Ano de Fabricação</label>
-                <input type="text" class="form-control" placeholder="apenas números ou será inválido" minlength="4" maxlength="4" id="anoFabricacao" pattern="[0-9]+$" th:field="*{anoFabricacao}">
-            </div>
+                <input type="text" class="form-control" placeholder="apenas números ou será inválido" minlength="4" maxlength="4" id="anoFabricacao" pattern="[0-9]+$" th:field="*{anoFabricacao}" required>
+                <ul>
+                  <li th:each="error : ${#fields.errors('anoFabricacao')}" th:text="${error}" class="text-danger"></li>
+              </ul>
+              </div>
 
             <div class="mb-3">
                 <label for="placa" class="form-label">Placa</label>
-                <input type="text" class="form-control" maxlength="7" placeholder="digite a placa do veículo" id="placa" th:field="*{placa}">
+                <input type="text" class="form-control" maxlength="7" placeholder="digite a placa do veículo" id="placa" th:field="*{placa}" required>
+                <ul>
+                  <li th:each="error : ${#fields.errors('placa')}" th:text="${error}" class="text-danger"></li>
+              </ul>
             </div>
 
             <div class="mb-3">
                 <label for="cor" class="form-label">Cor</label>
-                <input type="text" class="form-control" placeholder="digite a cor do veículo" id="cor" th:field="*{cor}">
+                <input type="text" class="form-control" placeholder="digite a cor do veículo" id="cor" th:field="*{cor}" required>
+                <ul>
+                  <li th:each="error : ${#fields.errors('cor')}" th:text="${error}" class="text-danger"></li>
+              </ul>
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>

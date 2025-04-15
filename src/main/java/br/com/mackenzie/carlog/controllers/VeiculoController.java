@@ -63,7 +63,7 @@ public class VeiculoController {
     }
 
     @PostMapping("/update-veiculo/{id}")
-    public String update(@PathVariable Integer id, @Valid Veiculo veiculo, BindingResult result) {
+    public String update(@PathVariable Integer id, Veiculo veiculo, BindingResult result) {
 
         if (result.hasErrors()) {
             return "veiculos/cadastro";

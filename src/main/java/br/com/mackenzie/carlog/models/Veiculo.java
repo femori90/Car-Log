@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import br.com.mackenzie.carlog.validation.PlacaValidation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ public class Veiculo {
     @NotNull(message = "O campo ano fabricação é obrigatório!")
     private Integer anoFabricacao;
 
+    @PlacaValidation
     @Column(nullable = false, unique = true)
     @NotBlank(message = "O campo placa é obrigatório!")
     private String placa;

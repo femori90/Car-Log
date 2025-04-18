@@ -65,7 +65,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Usuario usuario, BindingResult result) {
+    public String update(@PathVariable Integer id, Usuario usuario, BindingResult result) throws NoSuchAlgorithmException {
 
         if (result.hasErrors()) {
             return "usuarios/cadastro";
@@ -108,7 +108,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/update-password/{id}")
-    public String alterarSenha(@PathVariable Integer id, @RequestBody String senha) {
+    public String alterarSenha(@PathVariable Integer id, @RequestBody String senha) throws NoSuchAlgorithmException {
 
         var usuarioEncontrado = usuarioService.findById(id);
 

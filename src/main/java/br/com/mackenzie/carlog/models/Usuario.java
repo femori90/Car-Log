@@ -30,7 +30,7 @@ public class Usuario {
     private String nome;
 
     @NotBlank
-    //@CPF(message = "CPF inválido.")
+    @CPF(message = "CPF inválido.")
     @CpfValidation
     @Column(length = 14, nullable = false)
     private String cpf;

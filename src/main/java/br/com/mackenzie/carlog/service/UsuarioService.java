@@ -46,7 +46,7 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario update(Integer id, Usuario usuario) {
+    public Usuario update(Integer id, Usuario usuario) throws NoSuchAlgorithmException {
 
         var usuarioCadastrado = usuarioRepository.findById(id);
 
@@ -58,7 +58,7 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "CPF já cadastrado na base de dados!");
         }
 
-        usuario.setSenha(usuarioCadastrado.get().getSenha());
+        usuario.setSenha(Utils.md5(usuarioCadastrado.get().getSenha()));
 
         return usuarioRepository.save(usuario);
     }

@@ -19,12 +19,11 @@ Antes de começar, certifique-se de ter os seguintes softwares instalados em sua
 CREATE DATABASE carlog;
 ```
 #### 3. Configure as credenciais do banco de dados no arquivo `src/main/resources/application.properties`:
-    ```
-    spring.datasource.url=jdbc:mysql://localhost:3306/carlog
-    spring.datasource.username=carlog
-    spring.datasource.password=123456 
-    ```
-
+```sh
+  spring.datasource.url=jdbc:mysql://localhost:3306/carlog
+  spring.datasource.username=carlog
+  spring.datasource.password=123456 
+```
 
 `Nota:` Certifique-se de que o usuário carlog e a senha 123456 existem no MySQL. Caso contrário, ajuste as credenciais ou crie o usuário no MySQL:
 
@@ -84,10 +83,10 @@ Página Inicial: http://localhost:8080/home
 Login: http://localhost:8080/login
 
 ### Estrutura do Projeto
-java: Contém o código-fonte da aplicação.
-templates: Contém os arquivos HTML Thymeleaf.
-src/main/resources/application.properties: Configurações da aplicação.
-pom.xml: Gerenciamento de dependências do Maven.
+- **`src/main/java`**: Contém o código-fonte principal da aplicação.
+- **`src/main/resources/templates`**: Contém os arquivos HTML Thymeleaf utilizados para renderizar as páginas.
+- **`src/main/resources/application.properties`**: Arquivo de configuração da aplicação, incluindo detalhes de conexão com o banco de dados.
+- **`pom.xml`**: Arquivo de gerenciamento de dependências e configuração do Maven.
 
 ## Tecnologias Utilizadas
 * **Java 17**
@@ -121,9 +120,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
     5. Crie um novo Pull Request
     6. Notique um aprovador do repositório, para que ele possa fazer o `code review` 
 
-## Licença
-Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
+## Informações
 Este arquivo `README.md` fornece instruções claras e detalhadas para que qualquer pessoa consiga configurar e executar a aplicação localmente.
 
 ## Autores
@@ -131,4 +128,3 @@ Este arquivo `README.md` fornece instruções claras e detalhadas para que qualq
 - Matheus Sampaio de Oliveira [@blancoTrevizan](https://github.com/blancoTrevizan)
 
 - Felipe Morishita [@femori90](https://github.com/femori90)
-

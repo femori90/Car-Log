@@ -128,3 +128,5 @@ Este arquivo `README.md` fornece instruções claras e detalhadas para que qualq
 - Matheus Sampaio de Oliveira [@blancoTrevizan](https://github.com/blancoTrevizan)
 
 - Felipe Morishita [@femori90](https://github.com/femori90)
+
+- João Pinheiro [@Pinheiro018](https://github.com/Pinheiro018)
